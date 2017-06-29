@@ -3,10 +3,10 @@
 var Lib = require("pavlism-lib");
 var Logger = require("pavlism-logger");
 
-if (typeof JSLib === 'undefined') {
-    var JSLib = {};
+//if (typeof JSLib === 'undefined') {
+    //var JSLib = {};
     
-    var creation = function (Lib) {
+    //var JSLib = function (Lib) {
         var log = new Logger('Lib.JS.js', CLL.error);
 
         
@@ -677,5 +677,6 @@ if (typeof JSLib === 'undefined') {
 
         };
     };
-    creation.call(JSLib, Lib);
-}
+    //creation.call(JSLib, Lib);
+//}
+//module.exports = Lib;
