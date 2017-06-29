@@ -1,19 +1,17 @@
 //A library used to make JS coding easier and add some simple function to JS
 
-var Lib = require("pavlism-lib");
 var Logger = require("pavlism-logger");
+var log = new Logger('JS.js', Logger.level.error);
 
-var log = new Logger('Lib.JS.js', Logger.level.error);
 
-
-Lib.JS = {};
+JS = {};
 /**
  * This will create a new copy of the array passed in, instead of pointing to the old array
  *
  * @param array {array} The array the will be copied
  * @return {array} Returns a new array not connected to the old one.
  */
-Lib.JS.CreateNewArray = function (array) {
+JS.CreateNewArray = function (array) {
     log.trace("CreateNewArray");
     return array.slice();
 };
@@ -23,11 +21,11 @@ Lib.JS.CreateNewArray = function (array) {
  * @param callback {Function} the string you want to look at.
  * @return {Boolean} Returns true if the callback is a function and exists
  */
-Lib.JS.verifyCallback = function (callback) {
+JS.verifyCallback = function (callback) {
     log.trace("verifyCallback");
     var isValidFunction = true;
 
-    if (Lib.JS.isUndefined(callback) || !Lib.JS.isFunction(callback)) {
+    if (JS.isUndefined(callback) || !JS.isFunction(callback)) {
         isValidFunction = false;
     }
 
@@ -37,16 +35,16 @@ Lib.JS.verifyCallback = function (callback) {
  * This will look at through a @stringValue for anything the matches the @delimiter.  It will then return the position of
  * the @delimiter found after skipping a number of then determined by @numDel -1.
  * Example: @stringValue "http://localhost:3030/Students" but you want the position of the third "/"
- *      Lib.JS.GetPosWithSkip("http://localhost:3030/Students", "/", 3)
+ *      JS.GetPosWithSkip("http://localhost:3030/Students", "/", 3)
  *
  * @param stringVal {String} the string you want to look at.
  * @param delimiter {String} the deilimter your looking for.
  * @param numDel {Number} number of delimters to skip, defaults to .
  * @return {String} Returns some sample string, will return -1 if their are fewer delimters than (@numDelToSkip)
  */
-Lib.JS.getPosition = function (stringVal, delimiter, numDel) {
+JS.getPosition = function (stringVal, delimiter, numDel) {
     log.trace("GetPosWithSkip");
-    Lib.JS.setDefaultParameter(numDel, 0);
+    JS.setDefaultParameter(numDel, 0);
     var currentDelPos = 0;
     var totalDelPos = 0;
     for (var delCounter = 0; delCounter < numDel - 1; delCounter++) {
@@ -59,14 +57,14 @@ Lib.JS.getPosition = function (stringVal, delimiter, numDel) {
 };
 /**
  * This will insert @stringToInsert into @stringVal to the left of position @position
- * Example: Lib.JS.insertAt("0123456", 4, '**') = "0123**456"
+ * Example: JS.insertAt("0123456", 4, '**') = "0123**456"
  *
  * @param stringVal {String} the string you want to look at.
  * @param position {Number} the poistion.
  * @param stringToInsert {String} the string you want to insert.
  * @return {String} Returns This will return everything in the string to the Rigth of the @position
  */
-Lib.JS.insertAt = function (stringVal, position, stringToInsert) {
+JS.insertAt = function (stringVal, position, stringToInsert) {
     log.trace("Left");
     var left = stringVal.left(position);
     var right = stringVal.right(position - 1);
@@ -83,7 +81,7 @@ Lib.JS.insertAt = function (stringVal, position, stringToInsert) {
  * @param replacement {string} the string pattern to the search pattern to be replaced with.
  * @return {string} Returns the original string exect it will convert all the search patterns to replacement
  */
-Lib.JS.replace = function (string, search, replacement) {
+JS.replace = function (string, search, replacement) {
     log.trace("replace");
     return string.replace(new RegExp(search, 'g'), replacement);
 };
@@ -93,7 +91,7 @@ Lib.JS.replace = function (string, search, replacement) {
  * @param object {object} the object ot test
  * @return {boolean} Returns true if the object is empty, false if not.
  */
-Lib.JS.IsEmptyObject = function (object) {
+JS.IsEmptyObject = function (object) {
     log.trace("IsEmptyObject");
     if (Object.keys(object).length === 0 && object.constructor === Object) {
         return true;
@@ -106,10 +104,10 @@ Lib.JS.IsEmptyObject = function (object) {
  * @param stringValue {string} the string to be converted into an ingeter.
  * @return {int} Returns the integer value of the string, or 0 it strin gis not a integer.
  */
-Lib.JS.StringToInt = function (stringValue) {
+JS.StringToInt = function (stringValue) {
     log.trace("StringToInt");
     var number = 0;
-    if (Lib.JS.isNumber(stringValue)) {
+    if (JS.isNumber(stringValue)) {
         number = parseInt(stringValue);
     }
     return number;
@@ -121,7 +119,7 @@ Lib.JS.StringToInt = function (stringValue) {
  * @param date {date} the date to check
  * @return {boolean} Returns true if the date is valid, false if not
  */
-Lib.JS.isDate = function (date) {
+JS.isDate = function (date) {
     log.trace("isDate");
     date = date.toString();
     var datePieces = date.split("/");
@@ -170,7 +168,7 @@ Lib.JS.isDate = function (date) {
  * @param error {string} the erro string
  * @return {boolean} Returns true is their is an error and false no error exists
  */
-Lib.JS.logError = function (log, error) {
+JS.logError = function (log, error) {
     log.trace("logError");
     if (typeof error !== 'undefined') {
         log.error("Error:" + error);
@@ -186,7 +184,7 @@ Lib.JS.logError = function (log, error) {
  * @param string {string} the string to check
  * @return {boolean} Returns true if the string is empty, false if not
  */
-Lib.JS.isSTREmpty = function (string) {
+JS.isSTREmpty = function (string) {
     log.trace("isSTREmpty");
     log.debug("string:" + string);
 
@@ -205,7 +203,7 @@ Lib.JS.isSTREmpty = function (string) {
  *
  * @param template {template}
  */
-Lib.JS.clearInputs = function (template) {
+JS.clearInputs = function (template) {
     log.trace("clearInputs");
     //clear text boxes
     template.$('input').each(function () {
@@ -226,9 +224,9 @@ Lib.JS.clearInputs = function (template) {
  *
  * @param template {template}
  */
-Lib.JS.setDefaultParameter = function (parameter, defaultVal) {
+JS.setDefaultParameter = function (parameter, defaultVal) {
     log.trace("setDefaultParameter");
-    if (Lib.JS.isUndefined(parameter)) {
+    if (JS.isUndefined(parameter)) {
         parameter = defaultVal;
     }
     return parameter;
@@ -240,7 +238,7 @@ Lib.JS.setDefaultParameter = function (parameter, defaultVal) {
  * @param otherLog {Logger} The Logger to use to errors
  * @returns (boolean) Returns false if all parameters are defined, return true one or more of the parameters are undifined
  */
-Lib.JS.checkParameters = function (parameterArray, otherLog) {
+JS.checkParameters = function (parameterArray, otherLog) {
     log.trace("checkParameters");
     var parameterCounter = 0;
     var isFail = false;
@@ -250,7 +248,7 @@ Lib.JS.checkParameters = function (parameterArray, otherLog) {
             otherLog.error("Wrong number of parameters");
             return true;
         }
-        if (Lib.JS.isUndefined(parameterArray[parameterCounter][0])) {
+        if (JS.isUndefined(parameterArray[parameterCounter][0])) {
             otherLog.error(parameterArray[parameterCounter][1]);
             isFail = true;
         }
@@ -265,7 +263,7 @@ Lib.JS.checkParameters = function (parameterArray, otherLog) {
  * @param otherLog {Logger} The Logger to use to errors
  * @returns (boolean) Returns false if the parameter is defined else return true
  */
-Lib.JS.checkParameter = function (parameter, errorMessage, otherLog) {
+JS.checkParameter = function (parameter, errorMessage, otherLog) {
     log.trace("checkParameter");
     if (typeof parameter === 'undefined') {
         otherLog.error(errorMessage);
@@ -279,9 +277,9 @@ Lib.JS.checkParameter = function (parameter, errorMessage, otherLog) {
  * @param parameter {object} An object to test
  * @returns (boolean) Returns false if the parameter is defined else return true
  */
-Lib.JS.isDefined = function (parameter) {
+JS.isDefined = function (parameter) {
     log.trace("isDefined");
-    if (!Lib.JS.isUndefined(parameter) && !Lib.JS.isNull(parameter)) {
+    if (!JS.isUndefined(parameter) && !JS.isNull(parameter)) {
         return true;
     }
     return false;
@@ -292,7 +290,7 @@ Lib.JS.isDefined = function (parameter) {
  * @param parameter {object} An object to test
  * @returns (boolean) Returns false if the parameter is defined else return true
  */
-Lib.JS.isUndefined = function (parameter) {
+JS.isUndefined = function (parameter) {
     log.trace("isUndefined");
     if (typeof parameter === 'undefined') {
         return true;
@@ -305,9 +303,9 @@ Lib.JS.isUndefined = function (parameter) {
  * @param parameter {object} An object to test
  * @returns (boolean) Returns false if the parameter is defined else return true
  */
-Lib.JS.isUndefinedOrEmpty = function (parameter) {
+JS.isUndefinedOrEmpty = function (parameter) {
     log.trace("isUndefined");
-    if (Lib.JS.isUndefined(parameter) || parameter === "") {
+    if (JS.isUndefined(parameter) || parameter === "") {
         return true;
     }
     return false;
@@ -318,7 +316,7 @@ Lib.JS.isUndefinedOrEmpty = function (parameter) {
  * @param parameter {object} An object to test
  * @returns (boolean) Returns false if the parameter is not null else return true
  */
-Lib.JS.isNull = function (parameter) {
+JS.isNull = function (parameter) {
     log.trace("isNull");
     if (parameter === null && typeof parameter === "object") {
         return true;
@@ -331,7 +329,7 @@ Lib.JS.isNull = function (parameter) {
  * @param parameter {object} An object to test
  * @returns (boolean) Returns true is the parameter is a number else false
  */
-Lib.JS.isNumber = function (parameter) {
+JS.isNumber = function (parameter) {
     log.trace("isInt");
     return $.isNumeric(parameter);
 };
@@ -341,7 +339,7 @@ Lib.JS.isNumber = function (parameter) {
  * @param parameter {object} An object to test
  * @returns (boolean) Returns true is the parameter is a string else false
  */
-Lib.JS.isString = function (parameter) {
+JS.isString = function (parameter) {
     log.trace("isString");
     if (typeof parameter === 'string') {
         return true;
@@ -354,7 +352,7 @@ Lib.JS.isString = function (parameter) {
  * @param parameter {object} An object to test
  * @returns (boolean) Returns true is the parameter is a array else false
  */
-Lib.JS.isArray = function (parameter) {
+JS.isArray = function (parameter) {
     log.trace("isArray");
     if (parameter.constructor === Array) {
         return true;
@@ -367,7 +365,7 @@ Lib.JS.isArray = function (parameter) {
  * @param parameter {object} An object to test
  * @returns (boolean) Returns true is the parameter is a function else false
  */
-Lib.JS.isFunction = function (parameter) {
+JS.isFunction = function (parameter) {
     log.trace("isFunction");
     if (typeof parameter === 'function') {
         return true;
@@ -380,7 +378,7 @@ Lib.JS.isFunction = function (parameter) {
  * @param parameter {object} An object to test
  * @returns (boolean) Returns true is the parameter is a bit else false
  */
-Lib.JS.isBit = function (parameter) {
+JS.isBit = function (parameter) {
     log.trace("isBit");
     if (typeof parameter === 'boolean') {
         return true;
@@ -397,7 +395,7 @@ Lib.JS.isBit = function (parameter) {
  * @param event {event} The click event created when a user clicks on a table
  * @returns (<TR>) Returns the row number the user clicked on.
  */
-Lib.JS.getRowNumClicked = function (event) {
+JS.getRowNumClicked = function (event) {
     log.trace("getRowNumClicked");
     var row = $(event.target).parents('tr').index();
     return row;
@@ -408,7 +406,7 @@ Lib.JS.getRowNumClicked = function (event) {
  * @param event {event} The click event created when a user clicks on a table
  * @returns (int) Returns the row number the user clicked on.
  */
-Lib.JS.getTableRowNumFromEvent = function (event) {
+JS.getTableRowNumFromEvent = function (event) {
     log.trace("getTableRowNumFromEvent");
     var rowNum = $(event.target).parent()[0].rowIndex - 1;
     return rowNum;
@@ -422,7 +420,7 @@ Lib.JS.getTableRowNumFromEvent = function (event) {
  * @param delimiter {string}
  * @returns (string) Returns the lsit with the newItem added to the list
  */
-Lib.JS.addToStringList = function (list, newItem, delimiter) {
+JS.addToStringList = function (list, newItem, delimiter) {
     log.trace("addToStringList");
     if (list === "") {
         list = list + newItem;
@@ -437,7 +435,7 @@ Lib.JS.addToStringList = function (list, newItem, delimiter) {
  * @param child {object}
  * @param parent {object}
  */
-Lib.JS.inheritsFrom = function (child, parent) {
+JS.inheritsFrom = function (child, parent) {
     log.trace("inheritsFrom");
     child.prototype = Object.create(parent.prototype);
 };
@@ -448,14 +446,14 @@ Lib.JS.inheritsFrom = function (child, parent) {
  * @param giver {object}
  * @returns (object) Returns the new receiver
  */
-Lib.JS.combineObjects = function (receiver, giver) {
+JS.combineObjects = function (receiver, giver) {
     log.trace("combineObjects");
     //this will take add all the properites from the giver object to the receiver object
-    receiver = Lib.JS.setDefaultParameter(receiver, {});
-    giver = Lib.JS.setDefaultParameter(giver, {});
+    receiver = JS.setDefaultParameter(receiver, {});
+    giver = JS.setDefaultParameter(giver, {});
 
     for (var property in giver) {
-        if (Lib.JS.isUndefined(receiver[property])) {
+        if (JS.isUndefined(receiver[property])) {
             receiver[property] = giver[property];
         }
     }
@@ -470,11 +468,11 @@ Lib.JS.combineObjects = function (receiver, giver) {
  * @param giver {object}
  * @returns (object) Returns the new receiver
  */
-Lib.JS.combineArrays = function (receiver, giver) {
+JS.combineArrays = function (receiver, giver) {
     log.trace("combineArrays");
     //this will take add all the properites from the giver object to the receiver object
-    receiver = Lib.JS.setDefaultParameter(receiver, []);
-    giver = Lib.JS.setDefaultParameter(giver, []);
+    receiver = JS.setDefaultParameter(receiver, []);
+    giver = JS.setDefaultParameter(giver, []);
 
     var giverCounter = 0;
     for (giverCounter = 0; giverCounter < giver.length; giverCounter++) {
@@ -489,7 +487,7 @@ Lib.JS.combineArrays = function (receiver, giver) {
  * @param array {array}
  * @param object {object}
  */
-Lib.JS.remove = function (array, object) {
+JS.remove = function (array, object) {
     var index = array.indexOf(object);
     if (index > -1) {
         array.splice(index, 1);
@@ -502,7 +500,7 @@ Lib.JS.remove = function (array, object) {
  * @param property {property}
  * @returns (array) Returns a list of object properties
  */
-Lib.JS.getPropertyList = function (array, property) {
+JS.getPropertyList = function (array, property) {
     var list = [];
     var arrayCounter = 0;
     for (arrayCounter = 0; arrayCounter < array.length; arrayCounter++) {
@@ -517,7 +515,7 @@ Lib.JS.getPropertyList = function (array, property) {
  * @param rowNum {int}
  * @param template {template}
  */
-Lib.JS.duplicateRow = function (tableID, rowNum, template) {
+JS.duplicateRow = function (tableID, rowNum, template) {
     var rowToCopy = template.$('#' + tableID).find('tr:nth-child(' + rowNum + ')');
 
     var trNew = rowToCopy.clone();
@@ -532,7 +530,7 @@ Lib.JS.duplicateRow = function (tableID, rowNum, template) {
  * @param num {int} An object to test
  * @returns (boolean) Returns true is the num is odd else false
  */
-Lib.JS.isOdd = function (num) {
+JS.isOdd = function (num) {
     if (num % 2 === 0) {
         return false;
     } else {
@@ -545,7 +543,7 @@ Lib.JS.isOdd = function (num) {
  * @param num {int} An object to test
  * @returns (boolean) Returns true is the num is even else false
  */
-Lib.JS.isEven = function (num) {
+JS.isEven = function (num) {
     if (num % 2 === 0) {
         return true;
     } else {
@@ -560,7 +558,7 @@ Lib.JS.isEven = function (num) {
  * @param itemToAdd {object}
  * @returns (boolean) Returns new array.
  */
-Lib.JS.replaceArrayItem = function (array, itemToReplace, itemToAdd) {
+JS.replaceArrayItem = function (array, itemToReplace, itemToAdd) {
     var index = array.indexOf(itemToReplace);
     array.splice(index, 1);
     array.splice(index, 0, itemToAdd);
@@ -572,7 +570,7 @@ Lib.JS.replaceArrayItem = function (array, itemToReplace, itemToAdd) {
  * @param object {object}
  * @returns (object) Returns new object
  */
-Lib.JS.copyObject = function (object) {
+JS.copyObject = function (object) {
     return JSON.parse(JSON.stringify(object));
 };
 /**
@@ -581,7 +579,7 @@ Lib.JS.copyObject = function (object) {
  * @param copyFrom {object}
  * @param CopyTo {object}
  */
-Lib.JS.copyProperties = function (copyFrom, CopyTo) {
+JS.copyProperties = function (copyFrom, CopyTo) {
     for (var property in copyFrom) {
         CopyTo[property] = copyFrom[property];
     }
@@ -592,7 +590,7 @@ Lib.JS.copyProperties = function (copyFrom, CopyTo) {
  * @param object {object}
  * @returns {int} Retruns the number of properties
  */
-Lib.JS.getNumProperties = function (object) {
+JS.getNumProperties = function (object) {
     return Object.keys(object).length;
 };
 /**
@@ -601,8 +599,8 @@ Lib.JS.getNumProperties = function (object) {
  * @param array {array}
  * @returns {string} Retruns the new string
  */
-Lib.JS.arrayToString = function (array) {
-    array = Lib.JS.setDefaultParameter(array, []);
+JS.arrayToString = function (array) {
+    array = JS.setDefaultParameter(array, []);
     var returnString = "";
     for (var counter = 0; counter < array.length; counter++) {
         returnString = returnString + array[counter].toString();
@@ -611,13 +609,13 @@ Lib.JS.arrayToString = function (array) {
 };
 /**
  * This will generate a randome int using the min and max as the range, inclusive
- * Lib.JS.getRandomInt(1,5) -> can get 1,2,3,4,5
+ * JS.getRandomInt(1,5) -> can get 1,2,3,4,5
  *
  * @param min {int}
  * @param max {int}
  * @returns {int} Retruns random int between min and max
  */
-Lib.JS.getRandomInt = function (min, max) {		//Gets a random number
+JS.getRandomInt = function (min, max) {		//Gets a random number
     var randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
     return Math.round(randomNum);
 };
@@ -626,8 +624,8 @@ Lib.JS.getRandomInt = function (min, max) {		//Gets a random number
  *
  * @returns {boolean}
  */
-Lib.JS.getRandomBool = function () {		//Gets a boolean value
-    var randomNumber = Lib.JS.getRandomInt(0, 1);
+JS.getRandomBool = function () {		//Gets a boolean value
+    var randomNumber = JS.getRandomInt(0, 1);
     if (randomNumber === 1) {
         return true;
     } else {
@@ -640,8 +638,8 @@ Lib.JS.getRandomBool = function () {		//Gets a boolean value
  * @param numDaysMod {int}
  * @returns {date} Retruns formateed date
  */
-Lib.JS.getFormatedDate = function (numDaysMod) {
-    numDaysMod = Lib.JS.setDefaultParameter(numDaysMod, 0);
+JS.getFormatedDate = function (numDaysMod) {
+    numDaysMod = JS.setDefaultParameter(numDaysMod, 0);
     var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var date = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * numDaysMod);
     var day = date.getDate();
@@ -661,7 +659,7 @@ Lib.JS.getFormatedDate = function (numDaysMod) {
  * @param fileType {string} The file type (.txt, .xls etc.)
  * @return {Object} Returns a file blob
  */
-Lib.JS.getBlobFromFileString = function (fileString, fileType) {
+JS.getBlobFromFileString = function (fileString, fileType) {
     var binaryObject = fileString;
     var binary = atob(binaryObject.split(',')[1]);
     var array = [];
@@ -672,4 +670,4 @@ Lib.JS.getBlobFromFileString = function (fileString, fileType) {
     return blob;
 
 };
-module.exports = Lib;
+module.exports = JS;
