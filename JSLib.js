@@ -1,5 +1,8 @@
 //A library used to make JS coding easier and add some simple function to JS
 
+var Lib = require("pavlism-lib");
+var Logger = require("pavlism-logger");
+
 if (typeof JSLib === 'undefined') {
     var JSLib = {};
     

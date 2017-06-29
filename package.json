@@ -20,5 +20,6 @@
   "bugs": {
     "url": "https://github.com/pavlism/JSLib/issues"
   },
+  "dependencies": {"mrp-logger": "^1.1.1", "pavlism-lib": "^1.0.1"},
   "homepage": "https://github.com/pavlism/JSLib#readme"
 }
