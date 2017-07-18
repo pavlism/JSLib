@@ -677,6 +677,5 @@ JS.getBlobFromFileString = function (fileString, fileType) {
 if(typeof require !== 'undefined'){
 	module.exports = JS;
 }else{
-    Lib = {};
     Lib.JS = JS;
 }
