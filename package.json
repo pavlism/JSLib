@@ -1,6 +1,6 @@
 {
   "name": "pavlism-jslib",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Lib for JS stuff",
   "main": "JSLib.js",
   "scripts": {
