@@ -1,0 +1,22 @@
+{
+  "name": "pavlism-jslib",
+  "description": "A Lib for JS stuff",
+  "main": "JSLib.js",
+  "authors": [
+    "Mark Pavlis"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "JS",
+    "Lib",
+    "pavlis"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
