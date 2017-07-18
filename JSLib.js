@@ -1,6 +1,9 @@
 //A library used to make JS coding easier and add some simple function to JS
 
-var Logger = require("pavlism-logger");
+if(typeof require !== 'undefined'){
+	var Logger = require("pavlism-logger");
+}
+
 var log = new Logger('JS.js', Logger.level.error);
 
 
@@ -669,5 +672,8 @@ JS.getBlobFromFileString = function (fileString, fileType) {
     var blob = new Blob([new Uint8Array(array)], {type: fileType});
     return blob;
 
+
 };
-module.exports = JS;
+if(typeof require !== 'undefined'){
+	module.exports = JS;
+}
